@@ -108,8 +108,8 @@ export default function Page() {
       }
     );
 
-    // B. Sync Links Collection
-    const linksColRef = collection(db, "links");
+    // B. Sync Links Collection under users/anonymous/links
+    const linksColRef = collection(db, "users", "anonymous", "links");
     const linksQuery = query(linksColRef, orderBy("orderIndex", "asc"));
     const unsubscribeLinks = onSnapshot(
       linksQuery,
@@ -209,7 +209,7 @@ export default function Page() {
 
     if (dbStatus === "connected") {
       try {
-        await addDoc(collection(db, "links"), newLinkData);
+        await addDoc(collection(db, "users", "anonymous", "links"), newLinkData);
       } catch (err) {
         console.error("Add link error:", err);
       }
@@ -227,7 +227,7 @@ export default function Page() {
     setLinks(updated);
 
     if (dbStatus === "connected") {
-      updateDoc(doc(db, "links", id), { [key]: value }).catch((err) =>
+      updateDoc(doc(db, "users", "anonymous", "links", id), { [key]: value }).catch((err) =>
         console.error("Update link error:", err)
       );
     }
@@ -239,11 +239,11 @@ export default function Page() {
 
     if (dbStatus === "connected") {
       try {
-        await deleteDoc(doc(db, "links", id));
+        await deleteDoc(doc(db, "users", "anonymous", "links", id));
         // Re-index remaining links to ensure orderIndex integrity
         const batch = writeBatch(db);
         remaining.forEach((link, idx) => {
-          batch.update(doc(db, "links", link.id), { orderIndex: idx });
+          batch.update(doc(db, "users", "anonymous", "links", link.id), { orderIndex: idx });
         });
         await batch.commit();
       } catch (err) {
@@ -271,8 +271,8 @@ export default function Page() {
     if (dbStatus === "connected") {
       try {
         const batch = writeBatch(db);
-        batch.update(doc(db, "links", updated[index].id), { orderIndex: updated[index].orderIndex });
-        batch.update(doc(db, "links", updated[nextIndex].id), { orderIndex: updated[nextIndex].orderIndex });
+        batch.update(doc(db, "users", "anonymous", "links", updated[index].id), { orderIndex: updated[index].orderIndex });
+        batch.update(doc(db, "users", "anonymous", "links", updated[nextIndex].id), { orderIndex: updated[nextIndex].orderIndex });
         await batch.commit();
       } catch (err) {
         console.error("Reorder batch commit error:", err);
