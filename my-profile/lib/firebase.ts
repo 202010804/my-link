@@ -2,14 +2,15 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics, isSupported } from "firebase/analytics";
 
+// Firebase Configuration utilizing secure Next.js Environment Variables
 const firebaseConfig = {
-  apiKey: "AIzaSyBLbEtgSLIoIG9vYeRDb57Wct7UGfOQzU4",
-  authDomain: "my-jm-link.firebaseapp.com",
-  projectId: "my-jm-link",
-  storageBucket: "my-jm-link.firebasestorage.app",
-  messagingSenderId: "688763844028",
-  appId: "1:688763844028:web:25d5097932e2c256e8a7b9",
-  measurementId: "G-CW5G713D77"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase (prevent duplicate initialization in Next.js hot reloads)
