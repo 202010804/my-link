@@ -1,6 +1,6 @@
 {
   "buildCommand": "cd my-profile && npm run build",
-  "installCommand": "cd my-profile && npm install",
+  "installCommand": "cd my-profile && npm install --legacy-peer-deps",
   "outputDirectory": "my-profile/.next",
   "framework": "nextjs"
 }
