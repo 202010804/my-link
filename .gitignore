@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+/my-profile/node_modules/
+
+# Next.js build outputs
+.next/
+/my-profile/.next/
+out/
+/my-profile/out/
+build/
+/my-profile/build/
+
+# Local env files
+.env*.local
+/my-profile/.env*.local
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store

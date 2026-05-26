@@ -1,0 +1,11 @@
+{
+  "name": "mylink-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd my-profile && npm run build"
+  },
+  "dependencies": {
+    "next": "16.1.7"
+  }
+}
