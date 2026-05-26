@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd my-profile && npm run build",
+  "installCommand": "cd my-profile && npm install",
+  "outputDirectory": "my-profile/.next",
+  "framework": "nextjs"
+}
